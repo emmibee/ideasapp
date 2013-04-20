@@ -11,10 +11,23 @@
 </p>
 
 <p>
+  <b>Created at:</b>
+  <%= @idea.created_at %>
+</p>
+
+<p>
   <b>Picture:</b>
   <%= image_tag(@idea.picture_url, :width => 600) if @idea.picture.present? %>
 </p>
-
+<h3>Comments</h3>
+<% @idea.comments.each do |comment| %>
+	<div>
+		<strong><%= comment.user_name %></strong>
+		<br />
+	</p><%= comment.body %><p>
+</div>
+<% end %>
+<%= render 'comments/form' %>
 
 <%= link_to 'Edit', edit_idea_path(@idea) %> |
 <%= link_to 'Back', ideas_path %>
